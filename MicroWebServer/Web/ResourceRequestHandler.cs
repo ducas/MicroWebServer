@@ -19,14 +19,14 @@ namespace MicroWebServer.Web
             var request = context.Request;
             var url = request.RawUrl.ToLower();
 
+            var result = map.Contains(url) ? map[url] as Resource : null;
+            if (result == null)
+            {
+                return false;
+            }
+
             using (var response = context.Response)
             {
-                var result = map.Contains(url) ? map[url] as Resource : null;
-                if (result == null)
-                {
-                    return false;
-                }
-
                 var lastModified = request.Headers["If-Modified-Since"];
                 var resultLastModified = result.LastModified.ToString("ddd, dd MMM yyyy hh:mm:ss ") + "GMT";
                 if (lastModified != null && lastModified != "" && lastModified == resultLastModified)

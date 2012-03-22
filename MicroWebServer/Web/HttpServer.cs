@@ -28,43 +28,55 @@ namespace MicroWebServer.Web
         public void ProcessRequest()
         {
             int threadId;
-            lock(threadLock) threadId = nextThreadId++;
+            lock (threadLock) threadId = nextThreadId++;
+
+            string url = string.Empty;
+            HttpListenerContext context = null;
+            bool handled = false;
+            Stopwatch stopwatch = null;
 
             while (true)
             {
                 try
                 {
-                    var context = listener.GetContext();
-                    var stopwatch = Stopwatch.StartNew();
+                    context = listener.GetContext();
 
+                    url = context.Request.RawUrl;
+                    Debug.Print("Request for \"" + url + "\" received on thread " + threadId.ToString());
+                    stopwatch = Stopwatch.StartNew();
+
+                    handled = false;
                     foreach (var handler in handlers)
                     {
-                        if (handler.TryHandle(context)) return;
+                        if (handled = handler.TryHandle(context)) break;
                     }
 
-                    context.Response.StatusCode = 404;
-                    context.Response.StatusDescription = "Not Found";
+                    if (!handled)
+                    {
+                        context.Response.StatusCode = 404;
+                        context.Response.StatusDescription = "Not Found";
+                    }
 
                     stopwatch.Stop();
-                    Debug.Print("Request handled on thread " + threadId.ToString() + " in " + stopwatch.Ellapsed.Ticks.ToString() + " ticks");
+                    Debug.Print("Request for \"" + url + "\" handled on thread " + threadId.ToString() + " in " + stopwatch.Ellapsed.Ticks.ToString() + " ticks");
+
+                    url = string.Empty;
                 }
                 catch (Exception ex)
                 {
-                    Debug.Print("An error occurred:\n" + ex.ToString());
+                    Debug.Print("An error occurred handling request for \"" + url + "\" on thread " + threadId.ToString() + ":\n" + ex.ToString());
+                }
+                finally
+                {
+                    if (context != null)
+                    {
+                        context.Close();
+                        context = null;
+                    }
+                    url = string.Empty;
+                    if (stopwatch != null) stopwatch = null;
                 }
             }
         }
-    }
-
-    public delegate void RequestHandler(HttpListenerContext context);
-
-    public class HttpRequestEventArgs
-    {
-        public HttpRequestEventArgs(HttpListenerContext context)
-        {
-            Context = context;
-        }
-
-        public HttpListenerContext Context { get; private set; }
     }
 }
