@@ -11,7 +11,6 @@ namespace MicroWebServer
 {
     public class Program
     {
-        static ResourceMap map = new ResourceMap();
         static IRequestHandler[] handlers;
 
         public static void Main()
@@ -26,36 +25,9 @@ namespace MicroWebServer
 
             handlers = new IRequestHandler[] { api, resource };
 
-            var server = new HttpServer("http", 9997, ProcessRequest);
+            var server = new HttpServer("http", 9997, handlers);
 
             Thread.Sleep(Timeout.Infinite);
         }
-
-        public static void ProcessRequest(HttpListenerContext context)
-        {
-            foreach (var handler in handlers)
-            {
-                if (handler.TryHandle(context)) return;
-            }
-                
-            context.Response.StatusCode = 404;
-            context.Response.StatusDescription = "Not Found";
-        }
-
-        internal class ResourceMap
-        {
-            System.Collections.Hashtable table = new System.Collections.Hashtable();
-
-            public ResourceMap()
-            {
-            }
-
-            public Resource Get(string url)
-            {
-                if (!table.Contains(url)) return null;
-                return (Resource)table[url];
-            }
-        }
-
     }
 }
