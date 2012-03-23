@@ -20,7 +20,7 @@ namespace MicroWebServer
             while ((currentIndex = item.IndexOf(oldValue, previousIndex)) > -1)
             {
                 result += item.Substring(previousIndex, currentIndex - previousIndex) + newValue;
-                previousIndex = currentIndex + newValue.Length;
+                previousIndex = currentIndex + oldValue.Length;
             }
             result += item.Substring(previousIndex);
 

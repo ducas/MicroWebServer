@@ -10,9 +10,21 @@ namespace MicroWebServer
     {
         public void Serialize(object value, StreamWriter writer)
         {
-            var enumerable = value as IEnumerable;
-            if (enumerable != null)
+            if (value == null)
             {
+                writer.Write("null");
+            }
+            else if (value is string)
+            {
+                writer.Write("\"" + StringHelpers.Replace((string)value, "\"", "\\\"") + "\"");
+            }
+            else if (IsSimpleType(value))
+            {
+                writer.Write("\"" + value + "\"");
+            }
+            else if (value is IEnumerable || value is Array)
+            {
+                var enumerable = value is Array ? (Array)value : (IEnumerable)value;
                 writer.Write("[");
                 bool first = true;
                 foreach (var item in enumerable)
@@ -39,15 +51,19 @@ namespace MicroWebServer
                     name = name.Substring(0, 1).ToLower() + name.Substring(1);
 
                     var propertyValue = property.Invoke(value, new object[] { });
-                    var stringValue = propertyValue as string;
-                    if (stringValue != null) propertyValue = StringHelpers.Replace(stringValue, "\"", "\\\"");
 
-                    writer.Write("\"" + name + "\": " + (propertyValue != null ? "\"" + propertyValue + "\"" : "null"));
+                    writer.Write("\"" + name + "\": ");
+                    Serialize(propertyValue, writer);
 
                     first = false;
                 }
-                writer.Write(" } ");
+                writer.Write(" }");
             }
+        }
+
+        private bool IsSimpleType(object value)
+        {
+            return value.GetType().IsValueType;
         }
 
         public object Desrialize(StreamReader reader)
