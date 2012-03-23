@@ -10,7 +10,7 @@ namespace MicroWebServer.Web
             LastModified = DateTime.UtcNow;
         }
 
-        public short StringResource { get; set; }
+        public Enum StringResource { get; set; }
         public string MimeType { get; set; }
         public DateTime LastModified { get; private set; }
     }

@@ -22,12 +22,25 @@ namespace MicroWebServer.Web
             }
         }
 
+        public static void OK(HttpListenerResponse response)
+        {
+            OK(response, null, null, null);
+        }
+
+        public static void OK(HttpListenerResponse response, string mimeType, string body)
+        {
+            OK(response, mimeType, null, body);
+        }
+
         public static void OK(HttpListenerResponse response, string mimeType, string lastModified, string body)
         {
             response.StatusCode = 200;
             response.StatusDescription = "OK";
-            response.ContentType = mimeType;
-            response.Headers.Add("Last-Modified", lastModified);
+            
+            if (!StringHelpers.IsNullOrEmpty(mimeType)) response.ContentType = mimeType;
+            if (!StringHelpers.IsNullOrEmpty(lastModified)) response.Headers.Add("Last-Modified", lastModified);
+
+            if (StringHelpers.IsNullOrEmpty(body)) return;
 
             using (var s = response.OutputStream)
             using (var w = new StreamWriter(s))

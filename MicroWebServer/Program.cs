@@ -18,10 +18,10 @@ namespace MicroWebServer
             var api = new ApiRequestHandler();
             api.Register("Tasks", typeof(TasksController));
 
-            var resource = new ResourceRequestHandler();
-            resource.Register("/test.html", new Resource { StringResource = (short)Resources.StringResources.TestHtml, MimeType = "text/html" });
-            resource.Register("/scripts/jquery.js", new Resource { StringResource = (short)Resources.StringResources.ScriptsJqueryJs, MimeType = "text/javascript" });
-            resource.Register("/scripts/knockout.js", new Resource { StringResource = (short)Resources.StringResources.ScriptsKnockoutJs, MimeType = "text/javascript" });
+            var resource = new ResourceRequestHandler(Resources.ResourceManager);
+            resource.Register("/test.html", new Resource { StringResource = Resources.StringResources.TestHtml, MimeType = "text/html" });
+            resource.Register("/scripts/jquery.js", new Resource { StringResource = Resources.StringResources.ScriptsJqueryJs, MimeType = "text/javascript" });
+            resource.Register("/scripts/knockout.js", new Resource { StringResource = Resources.StringResources.ScriptsKnockoutJs, MimeType = "text/javascript" });
 
             handlers = new IRequestHandler[] { api, resource };
 

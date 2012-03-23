@@ -2,12 +2,19 @@ using System;
 using Microsoft.SPOT;
 using System.Collections;
 using System.IO;
+using System.Resources;
 
 namespace MicroWebServer.Web
 {
     public class ResourceRequestHandler : IRequestHandler
     {
         Hashtable map = new Hashtable();
+        private ResourceManager resourceManager;
+
+        public ResourceRequestHandler(System.Resources.ResourceManager resourceManager)
+        {
+            this.resourceManager = resourceManager;
+        }
 
         public void Register(string url, Resource resource)
         {
@@ -27,15 +34,22 @@ namespace MicroWebServer.Web
 
             using (var response = context.Response)
             {
-                var lastModified = request.Headers["If-Modified-Since"];
-                var resultLastModified = result.LastModified.ToString("ddd, dd MMM yyyy hh:mm:ss ") + "GMT";
-                if (!!StringHelpers.IsNullOrEmpty(lastModified) && lastModified == resultLastModified)
+                string resultLastModified = null;
+                if (result.LastModified != DateTime.MinValue)
                 {
-                    HttpResponse.NotModified(response);
-                    return true;
+                    var lastModified = request.Headers["If-Modified-Since"];
+                    resultLastModified = result.LastModified.ToString("ddd, dd MMM yyyy hh:mm:ss ") + "GMT";
+                    if (!!StringHelpers.IsNullOrEmpty(lastModified) && lastModified == resultLastModified)
+                    {
+                        HttpResponse.NotModified(response);
+                        return true;
+                    }
                 }
 
-                HttpResponse.OK(response, result.MimeType, resultLastModified, Resources.GetString((Resources.StringResources)result.StringResource));
+                var body = (string)Microsoft.SPOT.ResourceUtility.GetObject(resourceManager, result.StringResource);
+
+                HttpResponse.OK(response, result.MimeType, resultLastModified, body);
+
                 return true;
             }
         }
