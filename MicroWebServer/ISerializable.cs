@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MicroWebServer.Web
+namespace MicroWebServer
 {
     public interface ISerializable
     {

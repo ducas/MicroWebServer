@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 
-namespace MicroWebServer.Web
+namespace MicroWebServer
 {
     public interface IApiController
     {

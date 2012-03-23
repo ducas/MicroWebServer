@@ -4,7 +4,7 @@ using System.Collections;
 using System.IO;
 using System.Resources;
 
-namespace MicroWebServer.Web
+namespace MicroWebServer
 {
     public class ResourceRequestHandler : IRequestHandler
     {

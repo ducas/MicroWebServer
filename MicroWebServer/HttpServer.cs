@@ -4,7 +4,7 @@ using System.Net;
 using System.IO;
 using System.Threading;
 
-namespace MicroWebServer.Web
+namespace MicroWebServer
 {
     public class HttpServer
     {

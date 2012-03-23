@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MicroWebServer
+namespace MicroWebServer.Console
 {
     
     internal partial class Resources
@@ -20,7 +20,7 @@ namespace MicroWebServer
             {
                 if ((Resources.manager == null))
                 {
-                    Resources.manager = new System.Resources.ResourceManager("MicroWebServer.Resources", typeof(Resources).Assembly);
+                    Resources.manager = new System.Resources.ResourceManager("MicroWebServer.Console.Resources", typeof(Resources).Assembly);
                 }
                 return Resources.manager;
             }

@@ -4,9 +4,9 @@ using System.Collections;
 using System.Net;
 using System.IO;
 
-namespace MicroWebServer.Web
+namespace MicroWebServer
 {
-    public class ApiRequestHandler : MicroWebServer.Web.IRequestHandler
+    public class ApiRequestHandler : MicroWebServer.IRequestHandler
     {
         Hashtable controllers = new Hashtable();
 

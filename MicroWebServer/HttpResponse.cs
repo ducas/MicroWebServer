@@ -4,7 +4,7 @@ using System.Net;
 using System.IO;
 using System.Collections;
 
-namespace MicroWebServer.Web
+namespace MicroWebServer
 {
     public static class HttpResponse
     {

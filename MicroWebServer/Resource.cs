@@ -1,7 +1,7 @@
 using System;
 using Microsoft.SPOT;
 
-namespace MicroWebServer.Web
+namespace MicroWebServer
 {
     public class Resource
     {

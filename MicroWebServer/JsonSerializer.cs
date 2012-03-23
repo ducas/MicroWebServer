@@ -4,7 +4,7 @@ using System.Collections;
 using System.IO;
 using System.Reflection;
 
-namespace MicroWebServer.Web
+namespace MicroWebServer
 {
     public class JsonSerializer : ISerializer
     {

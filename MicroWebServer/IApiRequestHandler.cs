@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
-namespace MicroWebServer.Web
+
+namespace MicroWebServer
 {
     public interface IRequestHandler
     {

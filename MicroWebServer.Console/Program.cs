@@ -4,10 +4,9 @@ using System.Threading;
 using Microsoft.SPOT.Net.NetworkInformation;
 using System.Net;
 using System.IO;
-using MicroWebServer.Web;
 using MicroWebServer.Api;
 
-namespace MicroWebServer
+namespace MicroWebServer.Console
 {
     public class Program
     {

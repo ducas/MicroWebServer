@@ -1,7 +1,6 @@
 using System;
 using Microsoft.SPOT;
 using System.Collections;
-using MicroWebServer.Web;
 
 namespace MicroWebServer.Api
 {

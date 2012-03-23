@@ -49,9 +49,9 @@
     <Compile Include="StringHelperTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MicroWebServer.Console\MicroWebServer.Console.csproj">
-      <Project>{316B75F6-D5E1-4B54-AB37-2AC05A4F14F1}</Project>
-      <Name>MicroWebServer.Console</Name>
+    <ProjectReference Include="..\MicroWebServer\MicroWebServer.csproj">
+      <Project>{50AA3C37-4192-4D97-84D5-3420AF85E5BC}</Project>
+      <Name>MicroWebServer</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
