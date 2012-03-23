@@ -39,26 +39,15 @@ namespace MicroWebServer.Web
                     name = name.Substring(0, 1).ToLower() + name.Substring(1);
 
                     var propertyValue = property.Invoke(value, new object[] { });
-                    if (propertyValue is string) propertyValue = Escape(propertyValue);
+                    var stringValue = propertyValue as string;
+                    if (stringValue != null) propertyValue = StringHelpers.Replace(stringValue, "\"", "\\\"");
 
-                    writer.Write("\"" + name + "\": \"" + propertyValue + "\"");
+                    writer.Write("\"" + name + "\": " + (propertyValue != null ? "\"" + propertyValue + "\"" : "null"));
 
                     first = false;
                 }
                 writer.Write(" } ");
             }
-        }
-
-        private object Escape(object propertyValue)
-        {
-            var value = propertyValue as string;
-            if (value == null || value == "") return propertyValue;
-
-            var last = 0;
-            while ((last = value.IndexOf('"', last + 2)) > -1)
-                value = value.Substring(0, last) + "\\\"" + value.Substring(last + 1);
-
-            return value;
         }
 
         public object Desrialize(StreamReader reader)
