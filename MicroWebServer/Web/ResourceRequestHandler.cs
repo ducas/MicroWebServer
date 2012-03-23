@@ -29,22 +29,13 @@ namespace MicroWebServer.Web
             {
                 var lastModified = request.Headers["If-Modified-Since"];
                 var resultLastModified = result.LastModified.ToString("ddd, dd MMM yyyy hh:mm:ss ") + "GMT";
-                if (lastModified != null && lastModified != "" && lastModified == resultLastModified)
+                if (!!StringHelpers.IsNullOrEmpty(lastModified) && lastModified == resultLastModified)
                 {
-                    response.StatusCode = 304;
-                    response.StatusDescription = "Not Modified";
+                    HttpResponse.NotModified(response);
                     return true;
                 }
 
-                response.StatusCode = 200;
-                response.StatusDescription = "OK";
-                response.ContentType = result.MimeType;
-                response.Headers.Add("Last-Modified", resultLastModified);
-
-                using (var s = response.OutputStream)
-                using (var w = new StreamWriter(s))
-                    w.Write(Resources.GetString((Resources.StringResources)result.StringResource));
-
+                HttpResponse.OK(response, result.MimeType, resultLastModified, Resources.GetString((Resources.StringResources)result.StringResource));
                 return true;
             }
         }

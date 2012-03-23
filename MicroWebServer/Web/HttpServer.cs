@@ -51,11 +51,7 @@ namespace MicroWebServer.Web
                         if (handled = handler.TryHandle(context)) break;
                     }
 
-                    if (!handled)
-                    {
-                        context.Response.StatusCode = 404;
-                        context.Response.StatusDescription = "Not Found";
-                    }
+                    if (!handled) HttpResponse.NotFound(context.Response);
 
                     stopwatch.Stop();
                     Debug.Print("Request for \"" + url + "\" handled on thread " + threadId.ToString() + " in " + stopwatch.Ellapsed.Ticks.ToString() + " ticks");

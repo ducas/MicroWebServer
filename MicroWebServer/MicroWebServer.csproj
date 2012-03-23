@@ -30,6 +30,8 @@
   </PropertyGroup>
   <Import Project="$(NetMfTargetsBaseDir)$(TargetFrameworkVersion)\CSharp.Targets" />
   <ItemGroup>
+    <Compile Include="StringHelpers.cs" />
+    <Compile Include="Web\HttpResponse.cs" />
     <Compile Include="Web\IApiRequestHandler.cs" />
     <Compile Include="Web\ISerializable.cs" />
     <Compile Include="Web\IApiController.cs" />
@@ -48,7 +50,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Web\ISerializer.cs" />
-    <Compile Include="Web\JsonResponse.cs" />
     <Compile Include="Web\JsonSerializer.cs" />
     <Compile Include="Web\Resource.cs" />
     <Compile Include="Web\ResourceRequestHandler.cs" />
@@ -74,5 +75,4 @@
     <Content Include="Resources\Scripts\knockout.js" />
     <Content Include="Resources\test.html" />
   </ItemGroup>
-  <ItemGroup />
 </Project>
