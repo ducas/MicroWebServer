@@ -5,6 +5,7 @@ using Microsoft.SPOT.Net.NetworkInformation;
 using System.Net;
 using System.IO;
 using MicroWebServer.Api;
+using System.Reflection;
 
 namespace MicroWebServer.Console
 {
@@ -14,8 +15,8 @@ namespace MicroWebServer.Console
 
         public static void Main()
         {
-            var api = new ApiRequestHandler();
-            api.Register("Tasks", typeof(TasksController));
+            var api = new ApiRequestHandler("api");
+            api.RegisterAll(Assembly.GetAssembly(typeof(Program)));
 
             var resource = new ResourceRequestHandler(Resources.ResourceManager);
             resource.Register("/test.html", new Resource { StringResource = Resources.StringResources.TestHtml, MimeType = "text/html" });

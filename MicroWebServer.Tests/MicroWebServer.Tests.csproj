@@ -30,6 +30,7 @@
   </PropertyGroup>
   <Import Project="$(NetMfTargetsBaseDir)$(TargetFrameworkVersion)\CSharp.Targets" />
   <ItemGroup>
+    <Compile Include="ApiRequestHandlerTests.cs" />
     <Compile Include="Assert.cs" />
     <Compile Include="JsonSerializerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

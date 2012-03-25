@@ -25,6 +25,11 @@ namespace MicroWebServer.Tests
         {
             AreEqual(null, actual);
         }
+
+        public static void Fail(string message)
+        {
+            throw new AssertException(message);
+        }
     }
 
     public class AssertException : Exception
