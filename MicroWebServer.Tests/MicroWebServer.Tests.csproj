@@ -33,6 +33,7 @@
     <Compile Include="ApiRequestHandlerTests.cs" />
     <Compile Include="Assert.cs" />
     <Compile Include="JsonSerializerTests.cs" />
+    <Compile Include="Controllers\TestRunController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Resources.Designer.cs">
@@ -42,10 +43,16 @@
     </Compile>
     <Compile Include="StringHelperTests.cs" />
     <Compile Include="TestRunner.cs" />
+    <Compile Include="Models\TestResult.cs" />
+    <Compile Include="Views\TestRunView.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.SPOT.Graphics" />
+    <Reference Include="Microsoft.SPOT.IO" />
     <Reference Include="Microsoft.SPOT.Native">
     </Reference>
+    <Reference Include="Microsoft.SPOT.TinyCore" />
+    <Reference Include="Microsoft.SPOT.Touch" />
     <Reference Include="System.IO" />
   </ItemGroup>
   <ItemGroup>
@@ -60,5 +67,12 @@
       <Project>{50AA3C37-4192-4D97-84D5-3420AF85E5BC}</Project>
       <Name>MicroWebServer</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\miramob.tinyfnt" />
+    <None Include="Resources\nina14.tinyfnt" />
+    <None Include="Resources\nina48.tinyfnt" />
+    <None Include="Resources\pescab.tinyfnt" />
+    <None Include="Resources\small.tinyfnt" />
   </ItemGroup>
 </Project>
