@@ -30,8 +30,11 @@
   </PropertyGroup>
   <Import Project="$(NetMfTargetsBaseDir)$(TargetFrameworkVersion)\CSharp.Targets" />
   <ItemGroup>
+    <Compile Include="Mocks\ApiControllers.cs" />
+    <Compile Include="Mocks\HttpAbstractions.cs" />
     <Compile Include="UnitTests\ApiRequestHandlerTests.cs" />
     <Compile Include="Assert.cs" />
+    <Compile Include="UnitTests\ApiRouteTests.cs" />
     <Compile Include="UnitTests\JsonSerializerTests.cs" />
     <Compile Include="Controllers\TestRunController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -54,6 +57,7 @@
     </Reference>
     <Reference Include="Microsoft.SPOT.TinyCore" />
     <Reference Include="Microsoft.SPOT.Touch" />
+    <Reference Include="System.Http" />
     <Reference Include="System.IO" />
   </ItemGroup>
   <ItemGroup>

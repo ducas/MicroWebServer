@@ -7,18 +7,22 @@ namespace MicroWebServer.Routing
     {
         public string Url { get; private set; }
 
-        public Route(string url, IRequestHandler handler) : this(url, handler, null) { }
+        public Route(string url, IRouteHandler handler) : this(url, handler, null) { }
 
-        public Route(string url, IRequestHandler handler, object data)
+        public Route(string url, IRouteHandler handler, object data)
         {
             Url = url;
             Handler = handler;
             Data = data;
         }
 
-        public override bool CanHandle(IHttpContext context)
+        public override RouteData GetRouteData(IHttpContext context)
         {
-            return Url.ToLower().Equals(context.Request.RawUrl.ToLower());
+            var url = Url.ToLower();
+
+            if (!url.Equals(context.Request.RawUrl.ToLower())) return null;
+
+            return new RouteData { Handler = Handler, Url = url, Data = Data };
         }
     }
 }

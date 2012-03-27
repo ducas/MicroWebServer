@@ -5,16 +5,6 @@ using MicroWebServer.Abstractions;
 
 namespace MicroWebServer.Routing
 {
-    public static class RouteTable
-    {
-        readonly static RouteCollection routes = new RouteCollection();
-
-        public static RouteCollection Routes
-        {
-            get { return routes; }
-        }
-    }
-
     public class RouteCollection
     {
         ArrayList routes = new ArrayList();
@@ -26,12 +16,15 @@ namespace MicroWebServer.Routing
             routes.Add(route);
         }
 
-        public RouteBase ResolveFor(IHttpContext context)
+        public RouteData ResolveFor(IHttpContext context)
         {
             foreach (var item in routes)
             {
                 var route = item as RouteBase;
-                if (route != null && route.CanHandle(context)) return route;
+                if (route == null) continue;
+
+                var routeData = route.GetRouteData(context);
+                if (routeData != null) return routeData;
             }
             return null;
         }

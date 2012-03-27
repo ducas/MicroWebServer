@@ -54,8 +54,13 @@
     <Compile Include="Results\HttpNotFoundResult.cs" />
     <Compile Include="Results\HttpStatusCodeResult.cs" />
     <Compile Include="Results\JsonResult.cs" />
+    <Compile Include="Routing\ApiRoute.cs" />
+    <Compile Include="Routing\Handlers\ApiRouteHandler.cs" />
+    <Compile Include="Routing\IRouteHandler.cs" />
     <Compile Include="Routing\Route.cs" />
     <Compile Include="Routing\RouteBase.cs" />
+    <Compile Include="Routing\RouteCollectionExtensions.cs" />
+    <Compile Include="Routing\RouteData.cs" />
     <Compile Include="Routing\RouteTable.cs" />
     <Compile Include="Stopwatch.cs" />
     <Compile Include="StringHelpers.cs" />

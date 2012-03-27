@@ -2,6 +2,7 @@ using System;
 using Microsoft.SPOT;
 using System.Collections;
 using System.Reflection;
+using MicroWebServer.Tests.Mocks;
 
 namespace MicroWebServer.Tests.UnitTests
 {
@@ -44,23 +45,7 @@ namespace MicroWebServer.Tests.UnitTests
             }
             Assert.Fail("ApplicationExcpetion was not thrown");
         }
-
-        public class BadController : IApiController
-        {
-            public BadController(int id)
-            {
-
-            }
-
-            public IEnumerable Get() { return null; }
-
-            public void Put(object item) { }
-
-            public void Post(object item) { }
-
-            public void Delete(object item) { }
-        }
-
+        
         public void Register_ShouldThrowException_WhenTypeDoesNotHaveParameterlessConstructor()
         {
             try
@@ -75,16 +60,7 @@ namespace MicroWebServer.Tests.UnitTests
             Assert.Fail("ApplicationExcpetion was not thrown");
         }
 
-        public class ValidController : IApiController
-        {
-            public IEnumerable Get() { return null; }
-
-            public void Put(object item) { }
-
-            public void Post(object item) { }
-
-            public void Delete(object item) { }
-        }
+       
 
         public void Register_ShouldRegisterType_WhenTypeIsValid()
         {

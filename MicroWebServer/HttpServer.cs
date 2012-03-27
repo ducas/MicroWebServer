@@ -5,6 +5,7 @@ using System.IO;
 using System.Threading;
 using MicroWebServer.Abstractions;
 using MicroWebServer.Results;
+using MicroWebServer.Routing;
 
 namespace MicroWebServer
 {
@@ -13,6 +14,8 @@ namespace MicroWebServer
         const int defaultPoolSize = 3;
         static readonly object threadLock = new object();
 
+        public RouteCollection Routes { get; private set; }
+
         HttpListener listener;
         IRequestHandler[] handlers;
         int nextThreadId = 1;
@@ -20,6 +23,7 @@ namespace MicroWebServer
         public HttpServer(string prefix, int port, IRequestHandler[] handlers)
         {
             this.handlers = handlers;
+            this.Routes = new RouteCollection();
 
             listener = new HttpListener(prefix, port);
             listener.Start();

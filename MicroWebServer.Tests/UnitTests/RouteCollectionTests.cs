@@ -14,9 +14,9 @@ namespace MicroWebServer.Tests.UnitTests
 
         private class FalseRoute : RouteBase
         {
-            public override bool CanHandle(Abstractions.IHttpContext context)
+            public override RouteData GetRouteData(Abstractions.IHttpContext context)
             {
-                return false;
+                return null;
             }
         }
 
@@ -31,14 +31,9 @@ namespace MicroWebServer.Tests.UnitTests
         {
             public string Name { get; set; }
 
-            public override bool CanHandle(Abstractions.IHttpContext context)
+            public override RouteData GetRouteData(Abstractions.IHttpContext context)
             {
-                return true;
-            }
-
-            public override string ToString()
-            {
-                return Name ?? base.ToString();
+                return new RouteData() { Data = Name };
             }
         }
 
@@ -56,7 +51,8 @@ namespace MicroWebServer.Tests.UnitTests
             var second = new TrueRoute { Name = "second route" };
             collection.Add(first);
             collection.Add(second);
-            Assert.AreEqual(first, collection.ResolveFor(null));
+            var actual = (string)collection.ResolveFor(null).Data;
+            Assert.AreEqual(first.Name, actual);
         }
     }
 }

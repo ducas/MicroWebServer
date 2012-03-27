@@ -5,9 +5,9 @@ namespace MicroWebServer.Routing
 {
     public abstract class RouteBase
     {
-        public IRequestHandler Handler { get; protected set; }
+        public IRouteHandler Handler { get; protected set; }
         public object Data { get; protected set; }
 
-        public abstract bool CanHandle(IHttpContext context);
+        public abstract RouteData GetRouteData(IHttpContext context);
     }
 }
