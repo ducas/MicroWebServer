@@ -136,4 +136,7 @@
   <data name="String1" xml:space="preserve">
     <value>Hello World!</value>
   </data>
+  <data name="test" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\test.html;System.String, mscorlib, Version=4.1.2821.0, Culture=neutral, PublicKeyToken=null;Windows-1252</value>
+  </data>
 </root>

@@ -45,6 +45,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="UnitTests\ResourceRouteHandlerTests.cs" />
     <Compile Include="UnitTests\RouteCollectionTests.cs" />
     <Compile Include="UnitTests\StringHelperTests.cs" />
     <Compile Include="TestRunner.cs" />
@@ -80,5 +81,8 @@
     <None Include="Resources\nina48.tinyfnt" />
     <None Include="Resources\pescab.tinyfnt" />
     <None Include="Resources\small.tinyfnt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\test.html" />
   </ItemGroup>
 </Project>

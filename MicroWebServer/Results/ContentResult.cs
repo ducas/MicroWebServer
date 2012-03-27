@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Text;
 using MicroWebServer.Abstractions;
@@ -8,7 +9,7 @@ namespace MicroWebServer.Results
     {
         public string Content { get; set; }
         public string ContentType { get; set; }
-        public string LastModified { get; set; }
+        public DateTime LastModified { get; set; }
         public Encoding ContentEncoding { get; set; }
 
         public ContentResult()
@@ -25,7 +26,7 @@ namespace MicroWebServer.Results
             response.StatusDescription = "OK";
 
             if (!StringHelpers.IsNullOrEmpty(ContentType)) response.ContentType = ContentType;
-            if (!StringHelpers.IsNullOrEmpty(LastModified)) response.Headers.Add("Last-Modified", LastModified);
+            if (LastModified != DateTime.MinValue) response.Headers.Add("Last-Modified", LastModified.ToLastModifiedString());
 
             if (Content == null) Content = string.Empty;
 

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Test Html</title>
+        <script type="text/javascript" src="/Scripts/jquery.js"></script>
+        <script type="text/javascript" src="/Scripts/knockout.js"></script>
+    </head>
+    <body>
+        <h1>Test Page</h1>
+        <div class="content"></div>
+        <script type="text/javascript">
+            (function ($) {
+                $(document).ready(function () {
+                    $(".content").append("<span>jQuery was loaded</span>");
+                });
+            })(jQuery);
+        </script>
+    </body>
+</html>

@@ -37,7 +37,7 @@ namespace MicroWebServer
                 if (result.LastModified != DateTime.MinValue)
                 {
                     var lastModified = request.Headers["If-Modified-Since"];
-                    resultLastModified = result.LastModified.ToString("ddd, dd MMM yyyy hh:mm:ss ") + "GMT";
+                    resultLastModified = result.LastModified.ToLastModifiedString();
                     if (!!StringHelpers.IsNullOrEmpty(lastModified) && lastModified == resultLastModified)
                     {
                         return new HttpStatusCodeResult(304, "Not Modified");
@@ -46,7 +46,7 @@ namespace MicroWebServer
 
                 var body = (string)Microsoft.SPOT.ResourceUtility.GetObject(resourceManager, result.StringResource);
 
-                return new ContentResult { Content = body, ContentType = result.MimeType, LastModified = resultLastModified };
+                return new ContentResult { Content = body, ContentType = result.ContentType, LastModified = result.LastModified };
             }
         }
     }

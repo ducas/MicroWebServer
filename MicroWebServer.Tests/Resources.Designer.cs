@@ -36,6 +36,7 @@ namespace MicroWebServer.Tests
         [System.SerializableAttribute()]
         internal enum StringResources : short
         {
+            test = -5866,
             String1 = 1228,
         }
         [System.SerializableAttribute()]

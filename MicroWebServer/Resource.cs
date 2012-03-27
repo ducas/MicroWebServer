@@ -11,7 +11,7 @@ namespace MicroWebServer
         }
 
         public Enum StringResource { get; set; }
-        public string MimeType { get; set; }
+        public string ContentType { get; set; }
         public DateTime LastModified { get; private set; }
     }
 }

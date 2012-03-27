@@ -34,6 +34,7 @@
     <Compile Include="Abstractions\HttpRequest.cs" />
     <Compile Include="Abstractions\HttpResponse.cs" />
     <Compile Include="ApiRequestHandler.cs" />
+    <Compile Include="DateTimeExtensions.cs" />
     <Compile Include="ExtensionAttribute.cs" />
     <Compile Include="HttpServer.cs" />
     <Compile Include="IApiController.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="Results\JsonResult.cs" />
     <Compile Include="Routing\ApiRoute.cs" />
     <Compile Include="Routing\Handlers\ApiRouteHandler.cs" />
+    <Compile Include="Routing\Handlers\ResourceRouteHandler.cs" />
     <Compile Include="Routing\IRouteHandler.cs" />
     <Compile Include="Routing\Route.cs" />
     <Compile Include="Routing\RouteBase.cs" />
