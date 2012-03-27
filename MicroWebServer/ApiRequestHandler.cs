@@ -5,6 +5,7 @@ using System.Net;
 using System.IO;
 using System.Reflection;
 using MicroWebServer.Abstractions;
+using MicroWebServer.Results;
 
 namespace MicroWebServer
 {
@@ -63,34 +64,33 @@ namespace MicroWebServer
             controllers.Add(name.ToLower(), controllerType);
         }
 
-        public bool TryHandle(IHttpContext context)
+        public IActionResult TryHandle(IHttpContext context)
         {
             var url = context.Request.RawUrl.ToLower();
 
             var apiIndex = url.IndexOf(Prefix);
-            if (apiIndex != 0) return false;
+            if (apiIndex != 0) return null;
 
             var name = url.Substring(5).ToLower();
-            if (!controllers.Contains(name)) return false;
+            if (!controllers.Contains(name)) return null;
 
             var controllerType = controllers[name] as Type;
-            if (controllerType == null) return false;
+            if (controllerType == null) return null;
 
             var controllerConstructor = controllerType.GetConstructor(new Type[] { });
             var controller = controllerConstructor.Invoke(new object[] { }) as IApiController;
 
-            if (controller == null) return false;
+            if (controller == null) return null;
 
             var response = context.Response;
             var method = context.Request.HttpMethod.ToLower();
             switch (method)
             {
                 case "get":
-                    HttpResponse.Json(response, controller.Get());
-                    return true;
+                    return new JsonResult { Data = controller.Get() };
             }
 
-            return false;
+            return null;
         }
     }
 }

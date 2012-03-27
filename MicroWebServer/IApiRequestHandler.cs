@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Net;
 using MicroWebServer.Abstractions;
+using MicroWebServer.Results;
 
 namespace MicroWebServer
 {
     public interface IRequestHandler
     {
-        bool TryHandle(IHttpContext context);
+        IActionResult TryHandle(IHttpContext context);
     }
 }

@@ -35,7 +35,6 @@
     <Compile Include="Abstractions\HttpResponse.cs" />
     <Compile Include="ApiRequestHandler.cs" />
     <Compile Include="ExtensionAttribute.cs" />
-    <Compile Include="HttpResponse.cs" />
     <Compile Include="HttpServer.cs" />
     <Compile Include="IApiController.cs" />
     <Compile Include="IApiRequestHandler.cs" />
@@ -50,6 +49,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Results\ActionResult.cs" />
+    <Compile Include="Results\ContentResult.cs" />
+    <Compile Include="Results\HttpNotFoundResult.cs" />
+    <Compile Include="Results\HttpStatusCodeResult.cs" />
+    <Compile Include="Results\JsonResult.cs" />
     <Compile Include="Stopwatch.cs" />
     <Compile Include="StringHelpers.cs" />
     <Compile Include="ThreadPool.cs" />

@@ -4,6 +4,7 @@ using System.Collections;
 using System.IO;
 using System.Resources;
 using MicroWebServer.Abstractions;
+using MicroWebServer.Results;
 
 namespace MicroWebServer
 {
@@ -22,16 +23,13 @@ namespace MicroWebServer
             map.Add(url.ToLower(), resource);
         }
 
-        public bool TryHandle(IHttpContext context)
+        public IActionResult TryHandle(IHttpContext context)
         {
             var request = context.Request;
             var url = request.RawUrl.ToLower();
 
             var result = map.Contains(url) ? map[url] as Resource : null;
-            if (result == null)
-            {
-                return false;
-            }
+            if (result == null) return null;
 
             using (var response = context.Response)
             {
@@ -42,16 +40,13 @@ namespace MicroWebServer
                     resultLastModified = result.LastModified.ToString("ddd, dd MMM yyyy hh:mm:ss ") + "GMT";
                     if (!!StringHelpers.IsNullOrEmpty(lastModified) && lastModified == resultLastModified)
                     {
-                        HttpResponse.NotModified(response);
-                        return true;
+                        return new HttpStatusCodeResult(304, "Not Modified");
                     }
                 }
 
                 var body = (string)Microsoft.SPOT.ResourceUtility.GetObject(resourceManager, result.StringResource);
 
-                HttpResponse.OK(response, result.MimeType, resultLastModified, body);
-
-                return true;
+                return new ContentResult { Content = body, ContentType = result.MimeType, LastModified = resultLastModified };
             }
         }
     }

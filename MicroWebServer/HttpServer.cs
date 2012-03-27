@@ -4,6 +4,7 @@ using System.Net;
 using System.IO;
 using System.Threading;
 using MicroWebServer.Abstractions;
+using MicroWebServer.Results;
 
 namespace MicroWebServer
 {
@@ -34,7 +35,6 @@ namespace MicroWebServer
             string url = string.Empty;
             HttpListenerContext context = null;
             HttpContextAdapter contextAdapter = null;
-            bool handled = false;
             Stopwatch stopwatch = null;
 
             while (true)
@@ -48,13 +48,7 @@ namespace MicroWebServer
                     Debug.Print("Request for \"" + url + "\" received on thread " + threadId.ToString());
                     stopwatch = Stopwatch.StartNew();
 
-                    handled = false;
-                    foreach (var handler in handlers)
-                    {
-                        if (handled = handler.TryHandle(contextAdapter)) break;
-                    }
-
-                    if (!handled) HttpResponse.NotFound(contextAdapter.Response, Resources.GetString(Resources.StringResources.NotFoundBody));
+                    HandleRequest(contextAdapter);
 
                     stopwatch.Stop();
                     Debug.Print("Request for \"" + url + "\" handled on thread " + threadId.ToString() + " in " + stopwatch.Ellapsed.Ticks.ToString() + " ticks");
@@ -77,6 +71,19 @@ namespace MicroWebServer
                     if (stopwatch != null) stopwatch = null;
                 }
             }
+        }
+
+        private void HandleRequest(HttpContextAdapter contextAdapter)
+        {
+            IActionResult result = null;
+            foreach (var handler in handlers)
+            {
+                if ((result = handler.TryHandle(contextAdapter)) == null) break;
+            }
+
+            if (result == null) result = new HttpNotFoundResult();
+
+            result.ExecutResult(contextAdapter);
         }
     }
 }
