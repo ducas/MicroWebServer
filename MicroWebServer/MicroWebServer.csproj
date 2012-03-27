@@ -30,6 +30,9 @@
   </PropertyGroup>
   <Import Project="$(NetMfTargetsBaseDir)$(TargetFrameworkVersion)\CSharp.Targets" />
   <ItemGroup>
+    <Compile Include="Abstractions\HttpContext.cs" />
+    <Compile Include="Abstractions\HttpRequest.cs" />
+    <Compile Include="Abstractions\HttpResponse.cs" />
     <Compile Include="ApiRequestHandler.cs" />
     <Compile Include="HttpResponse.cs" />
     <Compile Include="HttpServer.cs" />
