@@ -3,6 +3,7 @@ using Microsoft.SPOT;
 using System.Collections;
 using System.IO;
 using System.Resources;
+using MicroWebServer.Abstractions;
 
 namespace MicroWebServer
 {
@@ -21,7 +22,7 @@ namespace MicroWebServer
             map.Add(url.ToLower(), resource);
         }
 
-        public bool TryHandle(System.Net.HttpListenerContext context)
+        public bool TryHandle(IHttpContext context)
         {
             var request = context.Request;
             var url = request.RawUrl.ToLower();

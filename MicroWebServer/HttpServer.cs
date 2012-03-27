@@ -3,6 +3,7 @@ using Microsoft.SPOT;
 using System.Net;
 using System.IO;
 using System.Threading;
+using MicroWebServer.Abstractions;
 
 namespace MicroWebServer
 {
@@ -32,6 +33,7 @@ namespace MicroWebServer
 
             string url = string.Empty;
             HttpListenerContext context = null;
+            HttpContextAdapter contextAdapter = null;
             bool handled = false;
             Stopwatch stopwatch = null;
 
@@ -40,6 +42,7 @@ namespace MicroWebServer
                 try
                 {
                     context = listener.GetContext();
+                    contextAdapter = new HttpContextAdapter(context);
 
                     url = context.Request.RawUrl;
                     Debug.Print("Request for \"" + url + "\" received on thread " + threadId.ToString());
@@ -48,10 +51,10 @@ namespace MicroWebServer
                     handled = false;
                     foreach (var handler in handlers)
                     {
-                        if (handled = handler.TryHandle(context)) break;
+                        if (handled = handler.TryHandle(contextAdapter)) break;
                     }
 
-                    if (!handled) HttpResponse.NotFound(context.Response);
+                    if (!handled) HttpResponse.NotFound(contextAdapter.Response, Resources.GetString(Resources.StringResources.NotFoundBody));
 
                     stopwatch.Stop();
                     Debug.Print("Request for \"" + url + "\" handled on thread " + threadId.ToString() + " in " + stopwatch.Ellapsed.Ticks.ToString() + " ticks");
@@ -64,6 +67,7 @@ namespace MicroWebServer
                 }
                 finally
                 {
+                    contextAdapter = null;
                     if (context != null)
                     {
                         context.Close();

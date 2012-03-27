@@ -4,10 +4,11 @@ using System.Collections;
 using System.Net;
 using System.IO;
 using System.Reflection;
+using MicroWebServer.Abstractions;
 
 namespace MicroWebServer
 {
-    public class ApiRequestHandler : MicroWebServer.IRequestHandler
+    public class ApiRequestHandler : IRequestHandler
     {
         Hashtable controllers = new Hashtable();
         public string Prefix { get; private set; }
@@ -62,7 +63,7 @@ namespace MicroWebServer
             controllers.Add(name.ToLower(), controllerType);
         }
 
-        public bool TryHandle(HttpListenerContext context)
+        public bool TryHandle(IHttpContext context)
         {
             var url = context.Request.RawUrl.ToLower();
 
