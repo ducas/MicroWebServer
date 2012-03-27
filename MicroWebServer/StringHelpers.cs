@@ -26,5 +26,10 @@ namespace MicroWebServer
 
             return result;
         }
+
+        public static bool StartsWith(this string value, string text)
+        {
+            return value.IndexOf(text) == 0;
+        }
     }
 }
