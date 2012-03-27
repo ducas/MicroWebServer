@@ -7,6 +7,6 @@ namespace MicroWebServer.Routing
 {
     public interface IRouteHandler
     {
-        IActionResult Handle(IHttpContext context);
+        IActionResult Handle(IHttpContext context, RouteData routeData);
     }
 }

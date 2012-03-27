@@ -34,6 +34,7 @@
     <Compile Include="Mocks\HttpAbstractions.cs" />
     <Compile Include="UnitTests\ApiRequestHandlerTests.cs" />
     <Compile Include="Assert.cs" />
+    <Compile Include="UnitTests\ApiRouteHandlerTests.cs" />
     <Compile Include="UnitTests\ApiRouteTests.cs" />
     <Compile Include="UnitTests\JsonSerializerTests.cs" />
     <Compile Include="Controllers\TestRunController.cs" />

@@ -11,12 +11,12 @@ namespace MicroWebServer.Tests
             if (expected == null || !expected.Equals(actual)) throw new AssertException("Expected: \"" + expected + "\", Actual: \"" + actual + "\"");
         }
 
-        internal static void IsTrue(bool actual)
+        public static void IsTrue(bool actual)
         {
             AreEqual(true, actual);
         }
 
-        internal static void IsFalse(bool actual)
+        public static void IsFalse(bool actual)
         {
             AreEqual(false, actual);
         }
@@ -26,12 +26,12 @@ namespace MicroWebServer.Tests
             throw new AssertException(message);
         }
 
-        internal static void IsNull(object actual)
+        public static void IsNull(object actual)
         {
             if (actual != null) throw new AssertException("Expected: \"null\", Actual: \"not null\"");
         }
 
-        internal static void IsNotNull(object actual)
+        public static void IsNotNull(object actual)
         {
             if (actual == null) throw new AssertException("Expected: \"not null\", Actual: \"null\"");
         }
