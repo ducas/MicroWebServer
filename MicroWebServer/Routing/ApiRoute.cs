@@ -60,7 +60,10 @@ namespace MicroWebServer.Routing
             var controllers = Data as Hashtable;
             if (controllers == null) return null;
 
-            var name = url.Substring(UrlPrefix.Length).ToLower();
+            var nextSlash = url.IndexOf('/', UrlPrefix.Length);
+            var nameLength = (nextSlash == -1) ? url.Length - UrlPrefix.Length : nextSlash - UrlPrefix.Length;
+
+            var name = url.Substring(UrlPrefix.Length, nameLength).ToLower();
             if (!controllers.Contains(name)) return null;
 
             var controllerType = controllers[name] as Type;

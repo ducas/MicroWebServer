@@ -79,5 +79,39 @@ namespace MicroWebServer.Tests.UnitTests
 
             Assert.AreEqual(type.FullName, handler.GetRouteData(context).Controller.GetType().FullName);
         }
+
+        public void GetRouteData_ShouldReturnDataWithController_WithTrailingSlash()
+        {
+            var handler = new ApiRoute("test", null, Assembly.GetAssembly(typeof(ApiRouteTests)));
+
+            var context = new MockHttpContext
+            {
+                Request = new MockHttpRequest
+                {
+                    RawUrl = "/test/valid/"
+                }
+            };
+
+            var type = typeof(ValidController);
+
+            Assert.AreEqual(type.FullName, handler.GetRouteData(context).Controller.GetType().FullName);
+        }
+
+        public void GetRouteData_ShouldReturnDataWithController_WhenIdSpecified()
+        {
+            var handler = new ApiRoute("test", null, Assembly.GetAssembly(typeof(ApiRouteTests)));
+
+            var context = new MockHttpContext
+            {
+                Request = new MockHttpRequest
+                {
+                    RawUrl = "/test/valid/1"
+                }
+            };
+
+            var type = typeof(ValidController);
+
+            Assert.AreEqual(type.FullName, handler.GetRouteData(context).Controller.GetType().FullName);
+        }
     }
 }
