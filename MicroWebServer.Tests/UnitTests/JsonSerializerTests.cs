@@ -2,7 +2,7 @@ using System;
 using Microsoft.SPOT;
 using System.IO;
 
-namespace MicroWebServer.Tests
+namespace MicroWebServer.Tests.UnitTests
 {
     public class JsonSerializerTests
     {

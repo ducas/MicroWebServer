@@ -54,6 +54,9 @@
     <Compile Include="Results\HttpNotFoundResult.cs" />
     <Compile Include="Results\HttpStatusCodeResult.cs" />
     <Compile Include="Results\JsonResult.cs" />
+    <Compile Include="Routing\Route.cs" />
+    <Compile Include="Routing\RouteBase.cs" />
+    <Compile Include="Routing\RouteTable.cs" />
     <Compile Include="Stopwatch.cs" />
     <Compile Include="StringHelpers.cs" />
     <Compile Include="ThreadPool.cs" />

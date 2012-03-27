@@ -3,7 +3,7 @@ using Microsoft.SPOT;
 using System.Collections;
 using System.Reflection;
 
-namespace MicroWebServer.Tests
+namespace MicroWebServer.Tests.UnitTests
 {
     public class ApiRequestHandlerTests
     {

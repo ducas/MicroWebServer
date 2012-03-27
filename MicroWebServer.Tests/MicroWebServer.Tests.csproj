@@ -30,9 +30,9 @@
   </PropertyGroup>
   <Import Project="$(NetMfTargetsBaseDir)$(TargetFrameworkVersion)\CSharp.Targets" />
   <ItemGroup>
-    <Compile Include="ApiRequestHandlerTests.cs" />
+    <Compile Include="UnitTests\ApiRequestHandlerTests.cs" />
     <Compile Include="Assert.cs" />
-    <Compile Include="JsonSerializerTests.cs" />
+    <Compile Include="UnitTests\JsonSerializerTests.cs" />
     <Compile Include="Controllers\TestRunController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
@@ -41,7 +41,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="StringHelperTests.cs" />
+    <Compile Include="UnitTests\RouteCollectionTests.cs" />
+    <Compile Include="UnitTests\StringHelperTests.cs" />
     <Compile Include="TestRunner.cs" />
     <Compile Include="Models\TestResult.cs" />
     <Compile Include="Views\TestRunView.cs" />

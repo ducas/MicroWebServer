@@ -21,14 +21,19 @@ namespace MicroWebServer.Tests
             AreEqual(false, actual);
         }
 
-        internal static void IsNull(string actual)
-        {
-            AreEqual(null, actual);
-        }
-
         public static void Fail(string message)
         {
             throw new AssertException(message);
+        }
+
+        internal static void IsNull(object actual)
+        {
+            if (actual != null) throw new AssertException("Expected: \"null\", Actual: \"not null\"");
+        }
+
+        internal static void IsNotNull(object actual)
+        {
+            if (actual == null) throw new AssertException("Expected: \"not null\", Actual: \"null\"");
         }
     }
 

@@ -2,7 +2,7 @@
 using System.Text;
 using MicroWebServer;
 
-namespace MicroWebServer.Tests
+namespace MicroWebServer.Tests.UnitTests
 {
     public class StringHelperTests
     {
