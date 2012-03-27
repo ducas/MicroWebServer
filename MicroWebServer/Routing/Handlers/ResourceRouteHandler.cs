@@ -8,17 +8,13 @@ namespace MicroWebServer.Routing.Handlers
 {
     public class ResourceRouteHandler : IRouteHandler
     {
-        readonly ResourceManager resourceManager;
-
-        public ResourceRouteHandler(ResourceManager resourceManager)
-        {
-            this.resourceManager = resourceManager;
-        }
-
         public IActionResult Handle(IHttpContext context, RouteData routeData)
         {
             var resource = routeData.Data as Resource;
             if (resource == null) return null;
+
+            var resourceManager = resource.ResourceManager;
+            if (resourceManager == null) return null;
 
             var body = Microsoft.SPOT.ResourceUtility.GetObject(resourceManager, resource.StringResource) as string;
             if (body == null) return null;

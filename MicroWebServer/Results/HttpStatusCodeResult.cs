@@ -8,6 +8,8 @@ namespace MicroWebServer.Results
         public int StatusCode { get; private set; }
         public string StatusDescription { get; private set; }
 
+        protected string Body { get; set; }
+
         public HttpStatusCodeResult(int statusCode) : this(statusCode, null) { }
 
         public HttpStatusCodeResult(int statusCode, string statusDescription)
@@ -25,7 +27,7 @@ namespace MicroWebServer.Results
 
             using (var s = response.OutputStream)
             using (var w = new StreamWriter(s))
-                w.Write("");
+                w.Write(Body ?? "");
         }
     }
 }

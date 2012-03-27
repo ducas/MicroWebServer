@@ -32,6 +32,7 @@
   <ItemGroup>
     <Compile Include="Mocks\ApiControllers.cs" />
     <Compile Include="Mocks\HttpAbstractions.cs" />
+    <Compile Include="Mocks\Routing.cs" />
     <Compile Include="UnitTests\ApiRequestHandlerTests.cs" />
     <Compile Include="Assert.cs" />
     <Compile Include="UnitTests\ApiRouteHandlerTests.cs" />
@@ -45,6 +46,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="UnitTests\MvcRequestHandlerTests.cs" />
     <Compile Include="UnitTests\ResourceRouteHandlerTests.cs" />
     <Compile Include="UnitTests\RouteCollectionTests.cs" />
     <Compile Include="UnitTests\StringHelperTests.cs" />

@@ -5,7 +5,7 @@ using MicroWebServer.Abstractions;
 
 namespace MicroWebServer.Routing
 {
-    public class RouteCollection
+    public class RouteCollection : IEnumerable
     {
         ArrayList routes = new ArrayList();
 
@@ -27,6 +27,11 @@ namespace MicroWebServer.Routing
                 if (routeData != null) return routeData;
             }
             return null;
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            return routes.GetEnumerator();
         }
     }
 }

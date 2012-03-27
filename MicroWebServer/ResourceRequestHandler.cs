@@ -11,12 +11,6 @@ namespace MicroWebServer
     public class ResourceRequestHandler : IRequestHandler
     {
         Hashtable map = new Hashtable();
-        private ResourceManager resourceManager;
-
-        public ResourceRequestHandler(System.Resources.ResourceManager resourceManager)
-        {
-            this.resourceManager = resourceManager;
-        }
 
         public void Register(string url, Resource resource)
         {
@@ -44,7 +38,7 @@ namespace MicroWebServer
                     }
                 }
 
-                var body = (string)Microsoft.SPOT.ResourceUtility.GetObject(resourceManager, result.StringResource);
+                var body = (string)Microsoft.SPOT.ResourceUtility.GetObject(result.ResourceManager, result.StringResource);
 
                 return new ContentResult { Content = body, ContentType = result.ContentType, LastModified = result.LastModified };
             }
