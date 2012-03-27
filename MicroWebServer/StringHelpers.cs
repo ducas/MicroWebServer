@@ -3,14 +3,14 @@ using Microsoft.SPOT;
 
 namespace MicroWebServer
 {
-    public class StringHelpers
+    public static class StringHelpers
     {
         public static bool IsNullOrEmpty(string value)
         {
             return value == null || value == string.Empty;
         }
 
-        public static string Replace(string item, string oldValue, string newValue)
+        public static string Replace(this string item, string oldValue, string newValue)
         {
             if (IsNullOrEmpty(item)) return item;
 
