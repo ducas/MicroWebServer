@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using MicroWebServer;
+using MFUnit;
 
 namespace MicroWebServer.Tests.UnitTests
 {

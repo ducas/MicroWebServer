@@ -4,6 +4,7 @@ using MicroWebServer.Routing.Handlers;
 using MicroWebServer.Routing;
 using MicroWebServer.Tests.Mocks;
 using MicroWebServer.Results;
+using MFUnit;
 
 namespace MicroWebServer.Tests.UnitTests
 {

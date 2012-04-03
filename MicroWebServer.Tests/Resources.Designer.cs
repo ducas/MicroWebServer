@@ -42,10 +42,6 @@ namespace MicroWebServer.Tests
         [System.SerializableAttribute()]
         internal enum FontResources : short
         {
-            nina48 = 1528,
-            pescab = 4084,
-            miramob = 8617,
-            small = 13070,
             nina14 = 19188,
         }
     }

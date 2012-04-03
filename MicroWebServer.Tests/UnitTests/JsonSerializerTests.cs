@@ -1,6 +1,7 @@
 using System;
 using Microsoft.SPOT;
 using System.IO;
+using MFUnit;
 
 namespace MicroWebServer.Tests.UnitTests
 {

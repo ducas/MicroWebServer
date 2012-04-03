@@ -3,6 +3,7 @@ using Microsoft.SPOT;
 using System.Collections;
 using System.Reflection;
 using MicroWebServer.Tests.Mocks;
+using MFUnit;
 
 namespace MicroWebServer.Tests.UnitTests
 {

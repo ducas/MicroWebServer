@@ -3,6 +3,7 @@ using Microsoft.SPOT;
 using MicroWebServer.Routing.Handlers;
 using MicroWebServer.Routing;
 using MicroWebServer.Results;
+using MFUnit;
 
 namespace MicroWebServer.Tests.UnitTests
 {
@@ -25,7 +26,7 @@ namespace MicroWebServer.Tests.UnitTests
         public void Handle_ShouldNotReturnResult_WhenDataIsInvalidResource()
         {
             var handler = new ResourceRouteHandler();
-            var result = handler.Handle(null, new RouteData { Data = new Resource(Resources.ResourceManager, Resources.FontResources.miramob) });
+            var result = handler.Handle(null, new RouteData { Data = new Resource(Resources.ResourceManager, Resources.FontResources.nina14) });
             Assert.IsNull(result);
         }
 
